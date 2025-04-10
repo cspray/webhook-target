@@ -1,0 +1,43 @@
+services:
+  database:
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+    networks:
+      web-app:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      target: http-server
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file: .env
+    networks:
+      web-app:
+
+  toolbox:
+    deploy:
+      replicas: 0
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      target: php-toolbox
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file: .env
+    networks:
+      web-app:
+
+volumes:
+  pgdata:
+
+networks:
+  web-app:

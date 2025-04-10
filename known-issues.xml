@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.10.0@9c0add4eb88d4b169ac04acb7c679918cbb9c252">
+  <file src="src/Authentication/Controller/AuthenticateUser.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handleRequest(Request $request) : Response {]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyNullArgument>
+      <code><![CDATA[$password]]></code>
+      <code><![CDATA[$username]]></code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="src/Dashboard/Controller/Home.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handleRequest(Request $request) : Response {]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Database/PostgresConnectionFactory.php">
+    <InvalidArgument>
+      <code><![CDATA[$connector]]></code>
+    </InvalidArgument>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[new class($connector, $databaseConfig->schema) implements SqlConnector {
+
+            public function __construct(
+                private readonly SqlConnector $connector,
+                private readonly string $searchPath
+            ) {}
+
+            #[Override]
+            public function connect(SqlConfig $config, ?Cancellation $cancellation = null) : SqlConnection {
+                $link = $this->connector->connect($config, $cancellation);
+                $link->query('DISCARD ALL');
+                $link->query(sprintf('SET search_path TO %s', $this->searchPath));
+                return $link;
+            }
+        }]]></code>
+    </LessSpecificReturnStatement>
+    <MissingTemplateParam>
+      <code><![CDATA[SqlConnector]]></code>
+    </MissingTemplateParam>
+    <MoreSpecificReturnType>
+      <code><![CDATA[SqlConnector<PostgresConfig, PostgresConnection>]]></code>
+    </MoreSpecificReturnType>
+  </file>
+  <file src="src/Http/Session/SessionHelper.php">
+    <MixedReturnStatement>
+      <code><![CDATA[$this->session($request)->get($attribute->name)]]></code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/WebhookTarget/Controller/ProcessWebhook.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handleRequest(Request $request) : Response {]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyNullArgument>
+      <code><![CDATA[$request->getBody()->read()]]></code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="src/WebhookTarget/Repository/PostgresBackedReceivedWebhookRepository.php">
+    <InvalidArgument>
+      <code><![CDATA[$row['body']]]></code>
+      <code><![CDATA[$row['created_at']]]></code>
+      <code><![CDATA[$row['headers']]]></code>
+      <code><![CDATA[$row['id']]]></code>
+      <code><![CDATA[$row['method']]]></code>
+      <code><![CDATA[$row['protocol']]]></code>
+      <code><![CDATA[$row['updated_at']]]></code>
+      <code><![CDATA[$row['uri']]]></code>
+    </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchAll() : \Generator {]]></code>
+      <code><![CDATA[public function save(ReceivedWebhook $receivedWebhook) : ReceivedWebhook {]]></code>
+    </MissingOverrideAttribute>
+    <MixedArgument>
+      <code><![CDATA[json_decode($row['headers'], true)]]></code>
+    </MixedArgument>
+  </file>
+</files>

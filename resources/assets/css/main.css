@@ -1,0 +1,21 @@
+/* Ensure the footer is pushed down to the bottom of all pages, even without enough content */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    padding-bottom: 100px;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+.templates-hero {
+}

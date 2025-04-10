@@ -1,0 +1,34 @@
+{
+  "name": "labrador-kennel/web-app",
+  "description": "Skeleton for a typical Labrador framework application.",
+  "license": ["MIT"],
+  "minimum-stability": "alpha",
+  "require": {
+    "php": "^8.3",
+    "ext-pcntl": "*",
+    "amphp/http-client": "^5.3",
+    "amphp/http-server-form-parser": "^2.0",
+    "amphp/postgres": "^v2.0",
+    "cspray/annotated-container-secrets": "^0.3",
+    "doctrine/migrations": "^3.6",
+    "labrador-kennel/framework": "dev-main",
+    "league/plates": "^3.5",
+    "voku/stringy": "^6.5"
+  },
+  "require-dev": {
+    "psalm/phar": "^5.11",
+    "symfony/dom-crawler": "^7.2",
+    "symfony/css-selector": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cspray\\WebhookTarget\\": "src",
+      "Cspray\\WebhookTarget\\Migrations\\": "resources/database/migrations"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cspray\\WebhookTarget\\Tests\\": "tests"
+    }
+  }
+}

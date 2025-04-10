@@ -1,0 +1,30 @@
+name: 'Unit Tests & Static Analysis'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  unit-testing-and-static-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Just
+        uses: extractions/setup-just@v2
+      - name: Create .env file
+        run: cp .env.dist .env
+      - name: Docker Compose Build
+        run: just build
+      - name: Docker Compose Up
+        run: just up
+      - name: Unit Testing
+        run: just test
+      - name: Static Analysis
+        run: just static-analysis
+      - name: Docker Compose Down
+        run: just down
+        continue-on-error: true
+

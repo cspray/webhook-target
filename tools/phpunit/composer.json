@@ -1,0 +1,7 @@
+{
+  "require": {
+    "cspray/assert-throws": "^0.2",
+    "cspray/database-test-case": "^0.3",
+    "phpunit/phpunit": "^10"
+  }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotatedContainer xmlns="https://annotated-container.cspray.io/schema/annotated-container.xsd" version="3.0.0-alpha1">
+  <scanDirectories>
+    <source>
+      <dir>src</dir>
+      <dir>tests</dir>
+    </source>
+    <vendor>
+      <package>
+        <name>labrador-kennel/framework</name>
+        <source>
+          <dir>src</dir>
+        </source>
+      </package>
+    </vendor>
+  </scanDirectories>
+  <definitionProviders>
+    <definitionProvider>Labrador\AsyncEvent\Autowire\DefinitionProvider</definitionProvider>
+    <definitionProvider>Labrador\Web\Autowire\DefinitionProvider</definitionProvider>
+    <definitionProvider>Cspray\WebhookTarget\Autowire\DefinitionProvider</definitionProvider>
+  </definitionProviders>
+  <parameterStores>
+    <parameterStore>config</parameterStore>
+  </parameterStores>
+</annotatedContainer>
