@@ -16,6 +16,7 @@ final class ServerConfigurationTest extends TestCase {
         $this->subject = new ServerConfig(
             1000,
             10,
+            '0.0.0.0',
             80,
             443,
             __FILE__,
