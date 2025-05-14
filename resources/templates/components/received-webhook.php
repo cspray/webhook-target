@@ -15,8 +15,8 @@
 
 <?php
 
-$json = json_decode($webhook->body, true, flags: JSON_THROW_ON_ERROR);
-$body = json_encode($json, flags: JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+$json = json_decode($webhook->body, true);
+$body = json_encode($json, flags: JSON_PRETTY_PRINT);
 
 ?>
 <?= $this->e($body) ?>
