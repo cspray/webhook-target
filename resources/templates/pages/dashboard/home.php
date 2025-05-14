@@ -20,7 +20,7 @@ $webhooks = iterator_to_array($data->receivedWebhooks);
         <?php else: ?>
             <?php foreach ($webhooks as $webhook): ?>
                 <div class="received-webhook mb-3">
-                    <div>ID: <span class="has-text-weight-bold"><?= $webhook->id->toString() ?></span></div>
+                    <div>ID: <span class="has-text-weight-bold"><?= $this->e($webhook->id->toString()) ?></span></div>
                     <pre><code><?= $this->fetch('components::received-webhook', ['webhook' => $webhook]) ?></code></pre>
                 </div>
             <?php endforeach ?>
