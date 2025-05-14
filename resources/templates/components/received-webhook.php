@@ -15,8 +15,13 @@
 
 <?php
 
-$json = json_decode(trim($webhook->body), true, flags: JSON_THROW_ON_ERROR);
-$body = json_encode($json, flags: JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+$rawBody = $webhook->body;
+try {
+    $json = json_decode($rawBody, true, flags: JSON_THROW_ON_ERROR);
+    $body = json_encode($json, flags: JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+} catch (JsonException $jsonException) {
+    $body = '<<< ERROR_JSON_DECODE >>>' . PHP_EOL . $rawBody;
+}
 
 ?>
 <?= $this->e($body) ?>
