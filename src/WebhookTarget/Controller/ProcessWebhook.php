@@ -5,6 +5,7 @@ namespace Cspray\WebhookTarget\WebhookTarget\Controller;
 use Amp\Http\HttpStatus;
 use Amp\Http\Server\Request;
 use Amp\Http\Server\Response;
+use Cspray\WebhookTarget\WebhookTarget\Controller\Formatter\RequestBodyFormatter;
 use Cspray\WebhookTarget\WebhookTarget\Entity\ReceivedWebhook;
 use Cspray\WebhookTarget\WebhookTarget\Repository\ReceivedWebhookRepository;
 use Labrador\Web\Autowire\HttpController;

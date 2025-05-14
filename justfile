@@ -61,6 +61,8 @@ _rollback-migrations-test:
 
 migrate-dev-env: _migrate-dev _migrate-test
 
+migrate-ci-env: _migrate-test
+
 _migrate-dev:
     docker compose run -e PROFILES="default,dev,docker,migrations" --rm --entrypoint="vendor/bin/doctrine-migrations migrate --configuration=/app/resources/database/migrations-config.php --db-configuration=/app/resources/database/migrations-conn.php --no-interaction" toolbox
 
