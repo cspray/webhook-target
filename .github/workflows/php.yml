@@ -20,6 +20,8 @@ jobs:
         run: just build
       - name: Docker Compose Up
         run: just up
+      - name: Run Database Migrations
+        run: just migrate-ci-env
       - name: Unit Testing
         run: just test
       - name: Static Analysis
